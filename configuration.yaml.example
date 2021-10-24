@@ -1,0 +1,12 @@
+mqtt:
+    broker: 192.168.1.1234
+    port: 1883
+    username: username
+    password: password
+    discovery_device_name: Octopi
+
+sensor:
+    - address: 0x280300AAAAAAAA
+      name: "Living Room Radiator"
+    - address: 0x280000BBBBBBBB
+      name: "Living Room Ambient"
