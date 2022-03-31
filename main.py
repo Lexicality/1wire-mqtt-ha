@@ -128,8 +128,12 @@ class Sensor:
 
     def _publish_state(self, client: MQTTClient, config: MQTTConf) -> None:
         topic = self._create_topic(config["topic_prefix"], "state")
-        packet = self._sensor.get_temperature()
-        client.publish(topic, packet)
+        try:
+            packet = self._sensor.get_temperature()
+            #print(topic, packet)
+            client.publish(topic, packet)
+        except Exception as e:
+            print("oh no", e)
         loop.call_later(self._update_interval, self._publish_state, client, config)
 
     def run(self, client: MQTTClient, config: MQTTConf) -> None:
