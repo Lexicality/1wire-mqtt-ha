@@ -133,7 +133,6 @@ class Sensor:
         loop.call_later(self._update_interval, self._publish_state, client, config)
 
     def run(self, client: MQTTClient, config: MQTTConf) -> None:
-        print("eyy I'm running here")
         if config["discovery"]:
             topic = self._create_topic(config["discovery_prefix"], "config")
             packet = self._create_autodiscovery(config)
@@ -142,7 +141,7 @@ class Sensor:
 
 
 def on_connect(client, flags, rc, properties):
-    print("Connected")
+    print("Connected", flags, rc, properties)
 
 
 def on_disconnect(client, packet, exc=None):
